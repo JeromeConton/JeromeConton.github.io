@@ -4,6 +4,43 @@ const context = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
+const collisionsMap = []
+for (let i=0; i < collisions.length; i += 70) {
+  collisionsMap.push(collisions.slice(i,70 + i))
+};
+
+class Frontiere {
+  static width = 48
+  static height = 48
+  constructor({position}) {
+    this.position = position
+    this.width = 48
+    this.height = 48
+  }
+  draw() {
+    context.fillStyle = 'red'
+    context.fillRect(this.position.x, this.position.y, this.width, this.height)
+  }
+};
+
+const frontieres = []
+const compense = {
+  x:-65,
+  y: -670
+};
+
+collisionsMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1334)
+    frontieres.push(new Frontiere({ 
+      position: {
+        x: j * Frontiere.width + compense.x,
+        y: i * Frontiere.height + compense.y
+      }
+    }))
+  })
+});
+
 context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -14,18 +51,38 @@ const joueurDownImage = new Image();
 joueurDownImage.src ='app/images/JoueurDown.png';
 
 class BougerJoueur {
-  constructor({ position, velocity, carteImage }) {
+  constructor({ position, rapidité, carteImage, cadre = {max : 1} }) {
     this.position = position;
     this.carteImage = carteImage;
+    this.cadre = cadre
   };
 
   draw() {
-    context.drawImage(this.carteImage, this.position.x, this.position.y);
+    // context.drawImage(this.carteImage, this.position.x, this.position.y);
+    context.drawImage(
+      this.carteImage,
+      0,
+      0,
+      this.carteImage.width / this.cadre.max,
+      this.carteImage.height,
+      this.position.x,
+      this.position.y,
+      this.carteImage.width / this.cadre.max,
+      this.carteImage.height
+    );
   };
 };
 
+const joueur = new BougerJoueur({
+  position: {
+    x: canvas.width / 2 - 192 / 4/ 2,
+    y: canvas.height / 2 - 68 / 2
+  },
+  carteImagemage: joueurDownImage
+})
+
 const background = new BougerJoueur({
-  position : {x: -65, y: -670},
+  position : {x: compense.x, y: compense.y},
   carteImage: carteImage,
 });
 
@@ -44,34 +101,45 @@ const touche = {
   },
 };
 
+const testFrontiere = new Frontiere({
+  position: {
+    x: 400,
+    y: 400
+  }
+});
+
+const bouger = [background, testFrontiere]
+
 function animationJoueur() {
   window.requestAnimationFrame(animationJoueur);
   background.draw();
-  context.drawImage(
-    joueurDownImage,
-    0,
-    0,
-    joueurDownImage.width / 4,
-    joueurDownImage.height,
-    canvas.width / 2 - joueurDownImage.width / 4 / 2,
-    canvas.height / 2 - joueurDownImage.height / 2,
-    joueurDownImage.width / 4,
-    joueurDownImage.height
-  );
+  // frontieres.forEach(frontiere => {
+  //   frontiere.draw()
+  // }),
+  testFrontiere.draw()
+
+  joueur.draw()
+
+  // if (joueur.position.x + joueur.width)
 
 
   if (touche.z.press && derniereTouche === 'z') {
-    background.position.y = background.position.y + 3;
-  }
+    bouger.forEach((bouge) => {
+      bouge.position.y += 3
+    })
+}
   else if (touche.q.press && derniereTouche === 'q') {
-    background.position.x = background.position.x + 3;
+    bouger.forEach((bouge) => {
+    bouge.position.x += 3})
   }
   else if (touche.d.press && derniereTouche === 'd') {
-    background.position.x = background.position.x - 3;
+    bouger.forEach((bouge) => {
+    bouge.position.x -= 3})
   }
   else if (touche.s.press && derniereTouche === 's') {
-    background.position.y = background.position.y - 3
-  };
+    bouger.forEach((bouge) => {
+    bouge.position.y -= 3})
+  }
 };
 animationJoueur();
 
