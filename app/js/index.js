@@ -5,8 +5,13 @@ canvas.width = 1024;
 canvas.height = 576;
 
 const collisionsMap = []
-for (let i=0; i < collisions.length; i += 70) {
-  collisionsMap.push(collisions.slice(i,70 + i))
+for (let i = 0; i < collisions.length; i += 70) {
+  collisionsMap.push(collisions.slice(i, 70 + i))
+};
+
+const contactMap = []
+for (let i = 0; i < contactJson.length; i += 70) {
+  contactMap.push(contactJson.slice(i, 70 + i))
 };
 
 const frontieres = []
@@ -17,8 +22,22 @@ const compense = {
 
 collisionsMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
-    if (symbol === 1334 & 1085)
+    if (symbol === 1334)
     frontieres.push(new Frontiere({ 
+      position: {
+        x: j * Frontiere.width + compense.x,
+        y: i * Frontiere.height + compense.y
+      }
+    }))
+  })
+});
+
+const contact = []
+
+contactMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1134)
+    contact.push(new Frontiere({ 
       position: {
         x: j * Frontiere.width + compense.x,
         y: i * Frontiere.height + compense.y
@@ -96,7 +115,7 @@ const touche = {
   }
 };
 
-const bouger = [background, ...frontieres, arrierePlan]
+const bouger = [background, ...frontieres, arrierePlan, ...contact]
 
 function limiteCollision({limite1, limite2}) {
   return (
@@ -111,6 +130,9 @@ function animationJoueur() {
   background.draw();
   frontieres.forEach(frontiere => {
     frontiere.draw()  
+  })
+  contact.forEach(contacts => {
+    contacts.draw()  
   })
 
   joueur.draw();
