@@ -9,20 +9,6 @@ for (let i=0; i < collisions.length; i += 70) {
   collisionsMap.push(collisions.slice(i,70 + i))
 };
 
-class Frontiere {
-  static width = 48
-  static height = 48
-  constructor({position}) {
-    this.position = position
-    this.width = 48
-    this.height = 48
-  }
-  draw() {
-    context.fillStyle = 'rgba(255, 0, 0, 0)'
-    context.fillRect(this.position.x, this.position.y, this.width, this.height)
-  }
-};
-
 const frontieres = []
 const compense = {
   x:-65,
@@ -45,41 +31,15 @@ context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 const carteImage = new Image();
-carteImage.src = 'app/images/PortfolioGameMap.png';
+carteImage.src = "./app/images/PortfolioGameMap.png";
+
+const arrierePlanImage = new Image();
+arrierePlanImage.src = "./app/images/PortfolioGameMapArrierePlan.png"
 
 const joueurDownImage = new Image();
-joueurDownImage.src ='app/images/JoueurDown.png';
+joueurDownImage.src ="./app/images/JoueurDown.png";
 
-class BougerJoueur {
-  constructor({ position, rapidité, carteImage, cadre = {max : 1} }) {
-    this.position = position,
-    this.carteImage = carteImage,
-    this.cadre = cadre,
-    
-    this.carteImage.onload = () => {
-    this.width = this.carteImage.width / this.cadre.max
-    this.height = this.carteImage.height
-    console.log(this.width);
-    console.log(this.height);
 
-    }
-  };
-
-  draw() {
-    // context.drawImage(this.carteImage, this.position.x, this.position.y);
-    context.drawImage(
-      this.carteImage,
-      0,
-      0,
-      this.carteImage.width / this.cadre.max,
-      this.carteImage.height,
-      this.position.x,
-      this.position.y,
-      this.carteImage.width / this.cadre.max,
-      this.carteImage.height
-    )
-  }
-};
 
 const joueur = new BougerJoueur({
   position: {
@@ -100,6 +60,14 @@ const background = new BougerJoueur({
   carteImage: carteImage
 });
 
+const arrierePlan = new BougerJoueur({
+  position : {
+    x: compense.x, 
+    y: compense.y
+  },
+  carteImage: arrierePlanImage
+});
+
 const touche = {
   z: {
     press: false,
@@ -115,7 +83,7 @@ const touche = {
   },
 };
 
-const bouger = [background, ...frontieres]
+const bouger = [background, ...frontieres, arrierePlan]
 
 function limiteCollision({limite1, limite2}) {
   return (
@@ -132,7 +100,8 @@ function animationJoueur() {
     frontiere.draw()  
   }),
 
-  joueur.draw()
+  joueur.draw();
+  arrierePlan.draw();
 
   let mouvement = true
   if (touche.z.press && derniereTouche === 'z') {
@@ -148,15 +117,15 @@ function animationJoueur() {
         })
       ) {
         console.log('colliding');
-      mouvement = false
+      mouvement = false;
         break;
       }
     }
 
     if (mouvement)
     bouger.forEach((bouge) => {
-      bouge.position.y += 3
-    })
+      bouge.position.y += 3;
+    });
 }
   else if (touche.q.press && derniereTouche === 'q') {
     for (let i = 0; i < frontieres.length; i++) {
@@ -169,9 +138,9 @@ function animationJoueur() {
             y: frontiere.position.y
           }}
         })
-      ) {
-        console.log('colliding');
-      mouvement = false
+      )
+      {
+        mouvement = false
         break;
       }
     }
