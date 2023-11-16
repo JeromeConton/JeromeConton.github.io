@@ -39,7 +39,14 @@ arrierePlanImage.src = "./app/images/PortfolioGameMapArrierePlan.png"
 const joueurDownImage = new Image();
 joueurDownImage.src ="./app/images/JoueurDown.png";
 
+const joueurUpImage = new Image();
+joueurUpImage.src ="./app/images/JoueurUp.png";
 
+const joueurLeftImage = new Image();
+joueurLeftImage.src ="./app/images/JoueurLeft.png";
+
+const joueurRightImage = new Image();
+joueurRightImage.src ="./app/images/JoueurRight.png";
 
 const joueur = new BougerJoueur({
   position: {
@@ -49,6 +56,12 @@ const joueur = new BougerJoueur({
   carteImage: joueurDownImage,
   cadre: {
     max: 4
+  },
+  bougerJoueurs: {
+    up: joueurUpImage,
+    left: joueurLeftImage,
+    right: joueurRightImage,
+    down: joueurDownImage
   }
 });
 
@@ -80,7 +93,7 @@ const touche = {
   },
   d: {
     press: false,
-  },
+  }
 };
 
 const bouger = [background, ...frontieres, arrierePlan]
@@ -91,20 +104,24 @@ function limiteCollision({limite1, limite2}) {
     limite1.position.x <= limite2.position.x + limite2.width &&
     limite1.position.y <= limite2.position.y + limite2.height &&
     limite1.position.y + limite1.height >= limite2.position.y)
-}
+};
 
 function animationJoueur() {
   window.requestAnimationFrame(animationJoueur);
   background.draw();
   frontieres.forEach(frontiere => {
     frontiere.draw()  
-  }),
+  })
 
   joueur.draw();
   arrierePlan.draw();
 
-  let mouvement = true
+  let mouvement = true;
+  joueur.mouvement = false;
+  
   if (touche.z.press && derniereTouche === 'z') {
+    joueur.mouvement = true;
+    joueur.carteImage = joueur.bougerJoueurs.up;
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
       if (
@@ -115,19 +132,22 @@ function animationJoueur() {
             y: frontiere.position.y + 3
           }}
         })
-      ) {
-        console.log('colliding');
+      )
+      {
       mouvement = false;
         break;
       }
     }
 
     if (mouvement)
-    bouger.forEach((bouge) => {
-      bouge.position.y += 3;
-    });
-}
+      bouger.forEach((bouge) => {
+        bouge.position.y += 3
+    })  
+  }
   else if (touche.q.press && derniereTouche === 'q') {
+    joueur.mouvement = true
+    joueur.carteImage = joueur.bougerJoueurs.left
+
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
       if (
@@ -146,10 +166,13 @@ function animationJoueur() {
     }
 
     if (mouvement)
-    bouger.forEach((bouge) => {
-    bouge.position.x += 3})
+      bouger.forEach((bouge) => {
+        bouge.position.x += 3})
   }
   else if (touche.d.press && derniereTouche === 'd') {
+    joueur.mouvement = true
+    joueur.carteImage = joueur.bougerJoueurs.right;
+
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
       if (
@@ -160,18 +183,21 @@ function animationJoueur() {
             y: frontiere.position.y
           }}
         })
-      ) {
-        console.log('colliding');
-      mouvement = false
+      )
+      {
+        mouvement = false
         break;
       }
     }
 
     if (mouvement)
-    bouger.forEach((bouge) => {
-    bouge.position.x -= 3})
+      bouger.forEach((bouge) => {
+        bouge.position.x -= 3})
   }
   else if (touche.s.press && derniereTouche === 's') {
+    joueur.mouvement = true
+    joueur.carteImage = joueur.bougerJoueurs.down;
+
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
       if (
@@ -182,18 +208,19 @@ function animationJoueur() {
             y: frontiere.position.y - 3
           }}
         })
-      ) {
-        console.log('colliding');
+      )
+      {
       mouvement = false
         break;
       }
     }
 
     if (mouvement)
-    bouger.forEach((bouge) => {
-    bouge.position.y -= 3})
+      bouger.forEach((bouge) => {
+        bouge.position.y -= 3})
   }
 };
+
 animationJoueur();
 
 let derniereTouche = '';
