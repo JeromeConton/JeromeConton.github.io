@@ -5,8 +5,8 @@ canvas.width = 1024;
 canvas.height = 576;
 
 const collisionsMap = []
-for (let i = 0; i < collisions.length; i += 70) {
-  collisionsMap.push(collisions.slice(i, 70 + i))
+for (let i = 0; i < collisionsJson.length; i += 70) {
+  collisionsMap.push(collisionsJson.slice(i, 70 + i))
 };
 
 const contactMap = []
@@ -45,6 +45,8 @@ contactMap.forEach((row, i) => {
     }))
   })
 });
+
+console.log(contact);
 
 context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
@@ -125,14 +127,20 @@ function limiteCollision({limite1, limite2}) {
     limite1.position.y + limite1.height >= limite2.position.y)
 };
 
+const cv ={
+  chargement: false
+}
+
 function animationJoueur() {
-  window.requestAnimationFrame(animationJoueur);
+  const animationId = window.requestAnimationFrame(animationJoueur);
+  console.log(animationId);
   background.draw();
+
   frontieres.forEach(frontiere => {
     frontiere.draw()  
   })
-  contact.forEach(contacts => {
-    contacts.draw()  
+  contact.forEach(contactCv => {
+    contactCv.draw()
   })
 
   joueur.draw();
@@ -140,10 +148,71 @@ function animationJoueur() {
 
   let mouvement = true;
   joueur.mouvement = false;
+
+  if(cv.chargement) return
+
+//  ----------  Activation de la zone de contact  ----------  //
+  if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
+    for (let i = 0; i < contact.length; i++) {
+      const contactCv = contact[i]
+      const chevauchement = 
+        (Math.min(joueur.position.x + joueur.width, contactCv.position.x + contactCv.width) 
+        -
+        Math.max(joueur.position.x, contactCv.position.x))
+        *
+        (Math.min(joueur.position.y + joueur.height, contactCv.position.y + contactCv.height)
+        -
+        Math.max(joueur.position.y, contactCv.position.y))
+      if (
+        limiteCollision({
+          limite1: joueur,
+          limite2: contactCv
+        }) &&
+        chevauchement > joueur.width * joueur.height /2
+      )
+        {
+        console.log("chargement contact");
+
+        // desactivation animation cv
+        window.cancelAnimationFrame(animationId)
+
+        cv.chargement = true
+        gsap.to("#chevauchement", {
+          opacity: 1,
+          repeat: 3,
+          yoyo: true,
+          duration: 0.4,
+          onComplete() {
+            gsap.to("#chevauchement", {
+              opacity: 1,
+                duration: 0.4,
+                onComplete() {
+                  // activation anamation cv
+                  animationCv()
+                  window.open("https://jeromeconton.github.io")         
+                  gsap.to("#chevauchement", {
+                    opacity: 0,
+                    duration: 0.4,
+                  })
+                }
+              
+            })
+
+          
+          }
+          
+        })
+        break;
+      }
+    }
+  }
+
+  //  ----------  Activation des frontieres  ----------  //
   
   if (touche.z.press && derniereTouche === 'z') {
     joueur.mouvement = true;
     joueur.carteImage = joueur.bougerJoueurs.up;
+
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
       if (
@@ -156,7 +225,7 @@ function animationJoueur() {
         })
       )
       {
-      mouvement = false;
+        mouvement = false;
         break;
       }
     }
@@ -243,7 +312,19 @@ function animationJoueur() {
   }
 };
 
+
+
 animationJoueur();
+
+//const chargementCv = new Image()
+
+function animationCv() {
+  window.requestAnimationFrame(animationCv)
+  console.log("animation du cv");
+}
+
+
+//  ----------  Mise en place des touches du joueur  ----------  //
 
 let derniereTouche = '';
 window.addEventListener('keydown', (even) => {
