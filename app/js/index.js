@@ -6,15 +6,15 @@ canvas.height = 576;
 
 const collisionsMap = []
 for (let i = 0; i < collisionsJson.length; i += 70) {
-  collisionsMap.push(collisionsJson.slice(i, 70 + i))
+  collisionsMap.push(collisionsJson.slice(i, 70 + i));
 };
 
 const contactMap = []
 for (let i = 0; i < contactJson.length; i += 70) {
-  contactMap.push(contactJson.slice(i, 70 + i))
+  contactMap.push(contactJson.slice(i, 70 + i));
 };
 
-const frontieres = []
+const frontieres = [];
 const compense = {
   x:-65,
   y: -710
@@ -27,12 +27,12 @@ collisionsMap.forEach((row, i) => {
       position: {
         x: j * Frontiere.width + compense.x,
         y: i * Frontiere.height + compense.y
-      }
-    }))
-  })
+      },
+    }));
+  });
 });
 
-const contact = []
+const contact = [];
 
 contactMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
@@ -41,9 +41,9 @@ contactMap.forEach((row, i) => {
       position: {
         x: j * Frontiere.width + compense.x,
         y: i * Frontiere.height + compense.y
-      }
-    }))
-  })
+      },
+    }));
+  });
 });
 
 console.log(contact);
@@ -83,7 +83,7 @@ const joueur = new BougerJoueur({
     left: joueurLeftImage,
     right: joueurRightImage,
     down: joueurDownImage
-  }
+  },
 });
 
 const background = new BougerJoueur({
@@ -117,7 +117,7 @@ const touche = {
   }
 };
 
-const bouger = [background, ...frontieres, arrierePlan, ...contact]
+const bouger = [background, ...frontieres, arrierePlan, ...contact];
 
 function limiteCollision({limite1, limite2}) {
   return (
@@ -129,7 +129,8 @@ function limiteCollision({limite1, limite2}) {
 
 const cv ={
   chargement: false
-}
+};
+
 
 function animationJoueur() {
   const animationId = window.requestAnimationFrame(animationJoueur);
@@ -137,24 +138,25 @@ function animationJoueur() {
   background.draw();
 
   frontieres.forEach(frontiere => {
-    frontiere.draw()  
+    frontiere.draw();
   })
   contact.forEach(contactCv => {
-    contactCv.draw()
+    contactCv.draw();
   })
 
   joueur.draw();
   arrierePlan.draw();
 
+  
   let mouvement = true;
   joueur.mouvement = false;
 
-  if(cv.chargement) return
+  if(cv.chargement) return;
 
-//  ----------  Activation de la zone de contact  ----------  //
+//  ----------  Activation de la zone de contact pour CV----------  //
   if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
     for (let i = 0; i < contact.length; i++) {
-      const contactCv = contact[i]
+      const contactCv = contact[i];
       const chevauchement = 
         (Math.min(joueur.position.x + joueur.width, contactCv.position.x + contactCv.width) 
         -
@@ -185,26 +187,22 @@ function animationJoueur() {
           onComplete() {
             gsap.to("#chevauchement", {
               opacity: 1,
-                duration: 0.4,
-                onComplete() {
-                  // activation anamation cv
-                  animationCv()
-                  window.open("https://jeromeconton.github.io")         
-                  gsap.to("#chevauchement", {
-                    opacity: 0,
-                    duration: 0.4,
-                  })
-                }
-              
+              duration: 0.4,
+              onComplete() {
+                // activation anamation cv
+                animationCv()
+                window.open("indexCv.html");  
+                gsap.to("#chevauchement", {
+                  opacity: 0,
+                  duration: 0.4,
+                })
+              }
             })
-
-          
           }
-          
         })
         break;
       }
-    }
+    };
   }
 
   //  ----------  Activation des frontieres  ----------  //
@@ -228,7 +226,7 @@ function animationJoueur() {
         mouvement = false;
         break;
       }
-    }
+    };
 
     if (mouvement)
       bouger.forEach((bouge) => {
@@ -236,11 +234,11 @@ function animationJoueur() {
     })  
   }
   else if (touche.q.press && derniereTouche === 'q') {
-    joueur.mouvement = true
-    joueur.carteImage = joueur.bougerJoueurs.left
+    joueur.mouvement = true;
+    joueur.carteImage = joueur.bougerJoueurs.left;
 
     for (let i = 0; i < frontieres.length; i++) {
-      const frontiere = frontieres[i]
+      const frontiere = frontieres[i];
       if (
         limiteCollision({
           limite1: joueur,
@@ -251,7 +249,7 @@ function animationJoueur() {
         })
       )
       {
-        mouvement = false
+        mouvement = false;
         break;
       }
     }
@@ -261,11 +259,11 @@ function animationJoueur() {
         bouge.position.x += 3})
   }
   else if (touche.d.press && derniereTouche === 'd') {
-    joueur.mouvement = true
+    joueur.mouvement = true;
     joueur.carteImage = joueur.bougerJoueurs.right;
 
     for (let i = 0; i < frontieres.length; i++) {
-      const frontiere = frontieres[i]
+      const frontiere = frontieres[i];
       if (
         limiteCollision({
           limite1: joueur,
@@ -276,17 +274,17 @@ function animationJoueur() {
         })
       )
       {
-        mouvement = false
+        mouvement = false;
         break;
       }
-    }
+    };
 
     if (mouvement)
       bouger.forEach((bouge) => {
         bouge.position.x -= 3})
   }
   else if (touche.s.press && derniereTouche === 's') {
-    joueur.mouvement = true
+    joueur.mouvement = true;
     joueur.carteImage = joueur.bougerJoueurs.down;
 
     for (let i = 0; i < frontieres.length; i++) {
@@ -301,10 +299,10 @@ function animationJoueur() {
         })
       )
       {
-      mouvement = false
+      mouvement = false;
         break;
       }
-    }
+    };
 
     if (mouvement)
       bouger.forEach((bouge) => {
@@ -312,57 +310,53 @@ function animationJoueur() {
   }
 };
 
-
-
 animationJoueur();
 
-//const chargementCv = new Image()
+const chargementCvImage = new Image();
+chargementCvImage.src = "./app/images/chargementCv.png";
+
+const chargementCv = new BougerJoueur({
+  position: {
+    x: 0,
+    y: 0
+  },
+  carteImage: chargementCvImage
+});
+
+let animationId;
 
 function animationCv() {
-  window.requestAnimationFrame(animationCv)
+  animationId = window.requestAnimationFrame(animationCv);
+  chargementCv.draw();
+  // window.open("indexCv.html");
   console.log("animation du cv");
-}
+};
 
+// ----- Recuperation bouton retour ----- //
 
-//  ----------  Mise en place des touches du joueur  ----------  //
-
-let derniereTouche = '';
-window.addEventListener('keydown', (even) => {
-  switch (even.key) {
-    case 'z':
-      touche.z.press = true;
-      derniereTouche = 'z';
-      break;
-    case 'q':
-      touche.q.press = true;
-      derniereTouche = 'q';
-      break;
-
-    case 's':
-      touche.s.press = true;
-      derniereTouche = 's';
-      break;
-
-    case 'd':
-      touche.d.press = true;
-      derniereTouche = 'd';
-      break;
-  };
+document.querySelectorAll("button").forEach(button=> {
+  button.addEventListener("click", () => {
+    console.log("click");
+    gsap.to("#chevauchement", {
+      opacity: 1,
+      repeat: 3,
+      yoyo: true,
+      duration: 0.4,
+      onComplete() {
+        gsap.to("#chevauchement", {
+          opacity: 1,
+          duration: 0.4,
+          onComplete() {
+            open("index.html");
+            document.querySelector(".retourJeu").style.display = "none";
+            gsap.to("#chevauchement", {
+              opacity: 0,        
+            })
+          }
+        })
+      }
+    })
+  })
 });
 
-window.addEventListener('keyup', (even) => {
-  switch (even.key) {
-    case 'z':
-      touche.z.press = false;
-      break;
-    case 'q':
-      touche.q.press = false;
-      break;
-    case 's':
-      touche.s.press = false;
-      break;
-    case 'd':
-      touche.d.press = false;
-      break;
-  };
-});
+

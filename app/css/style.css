@@ -16,4 +16,24 @@ body {
   left: 0;
   opacity: 0;
   pointer-events: none;
+  /* z-index: 10; */
+}
+
+.retourJeu {
+  /* background-color: rgb(116, 200, 88); */
+  width: 8em;
+  height: 2em;
+  position: absolute;
+  bottom: 1em;
+  margin-left: 28em;
+}
+
+button:hover {
+  background-color: rgb(116, 200, 88);
+}
+
+#bouton {
+  padding-left: 1.2em;
+  display:flex;
+  align-content: space-between;
 }
