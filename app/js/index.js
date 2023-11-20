@@ -20,6 +20,7 @@ const compense = {
   y: -710
 };
 
+
 collisionsMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
     if (symbol === 1334)
@@ -131,8 +132,8 @@ const cv ={
   chargement: false
 };
 
-
 function animationJoueur() {
+  document.querySelector("#retourJeu").style.display = 'none'
   const animationId = window.requestAnimationFrame(animationJoueur);
   console.log(animationId);
   background.draw();
@@ -151,13 +152,14 @@ function animationJoueur() {
   let mouvement = true;
   joueur.mouvement = false;
 
+  console.log(animationId);
   if(cv.chargement) return;
 
 //  ----------  Activation de la zone de contact pour CV----------  //
   if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
     for (let i = 0; i < contact.length; i++) {
       const contactCv = contact[i];
-      const chevauchement = 
+      const aireChevauchement = 
         (Math.min(joueur.position.x + joueur.width, contactCv.position.x + contactCv.width) 
         -
         Math.max(joueur.position.x, contactCv.position.x))
@@ -170,12 +172,12 @@ function animationJoueur() {
           limite1: joueur,
           limite2: contactCv
         }) &&
-        chevauchement > joueur.width * joueur.height /2
+        aireChevauchement > (joueur.width * joueur.height) /2 && Math.random() < 0.02
       )
         {
         console.log("chargement contact");
 
-        // desactivation animation cv
+        // desactivation boucle animation cv
         window.cancelAnimationFrame(animationId)
 
         cv.chargement = true
@@ -208,8 +210,8 @@ function animationJoueur() {
   //  ----------  Activation des frontieres  ----------  //
   
   if (touche.z.press && derniereTouche === 'z') {
-    joueur.mouvement = true;
-    joueur.carteImage = joueur.bougerJoueurs.up;
+    joueur.mouvement = true
+    joueur.carteImage = joueur.bougerJoueurs.up
 
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
@@ -234,7 +236,7 @@ function animationJoueur() {
     })  
   }
   else if (touche.q.press && derniereTouche === 'q') {
-    joueur.mouvement = true;
+    joueur.mouvement = true
     joueur.carteImage = joueur.bougerJoueurs.left;
 
     for (let i = 0; i < frontieres.length; i++) {
@@ -259,7 +261,7 @@ function animationJoueur() {
         bouge.position.x += 3})
   }
   else if (touche.d.press && derniereTouche === 'd') {
-    joueur.mouvement = true;
+    joueur.mouvement = true
     joueur.carteImage = joueur.bougerJoueurs.right;
 
     for (let i = 0; i < frontieres.length; i++) {
@@ -284,8 +286,8 @@ function animationJoueur() {
         bouge.position.x -= 3})
   }
   else if (touche.s.press && derniereTouche === 's') {
-    joueur.mouvement = true;
-    joueur.carteImage = joueur.bougerJoueurs.down;
+    joueur.mouvement = true
+    joueur.carteImage = joueur.bougerJoueurs.down
 
     for (let i = 0; i < frontieres.length; i++) {
       const frontiere = frontieres[i]
@@ -311,52 +313,4 @@ function animationJoueur() {
 };
 
 animationJoueur();
-
-const chargementCvImage = new Image();
-chargementCvImage.src = "./app/images/chargementCv.png";
-
-const chargementCv = new BougerJoueur({
-  position: {
-    x: 0,
-    y: 0
-  },
-  carteImage: chargementCvImage
-});
-
-let animationId;
-
-function animationCv() {
-  animationId = window.requestAnimationFrame(animationCv);
-  chargementCv.draw();
-  // window.open("indexCv.html");
-  console.log("animation du cv");
-};
-
-// ----- Recuperation bouton retour ----- //
-
-document.querySelectorAll("button").forEach(button=> {
-  button.addEventListener("click", () => {
-    console.log("click");
-    gsap.to("#chevauchement", {
-      opacity: 1,
-      repeat: 3,
-      yoyo: true,
-      duration: 0.4,
-      onComplete() {
-        gsap.to("#chevauchement", {
-          opacity: 1,
-          duration: 0.4,
-          onComplete() {
-            open("index.html");
-            document.querySelector(".retourJeu").style.display = "none";
-            gsap.to("#chevauchement", {
-              opacity: 0,        
-            })
-          }
-        })
-      }
-    })
-  })
-});
-
 
