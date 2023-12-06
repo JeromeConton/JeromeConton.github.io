@@ -333,7 +333,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: app1Site
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.06
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
     )
       {
       console.log("chargement app1");
@@ -385,7 +385,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: app2Site
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.06
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
     )
       {
       console.log("chargement app2");
@@ -437,7 +437,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: acceuilRetour
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.06
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
     )
       {
       console.log("chargement app1");
@@ -489,7 +489,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: jeuCache
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.06
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
     )
       {
       console.log("chargement app1");
