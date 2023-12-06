@@ -29,6 +29,11 @@ for (let i = 0; i < acceuilJson.length; i += 70) {
   acceuilMap.push(acceuilJson.slice(i, 70 + i));
 };
 
+const jeuMap = []
+for (let i = 0; i < jeuJson.length; i += 70) {
+  jeuMap.push(jeuJson.slice(i, 70 + i));
+};
+
 const frontieres = [];
 const compense = {
   x:-65,
@@ -95,6 +100,20 @@ acceuilMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
     if (symbol === 1334)
     acceuil.push(new Frontiere({ 
+      position: {
+        x: j * Frontiere.width + compense.x,
+        y: i * Frontiere.height + compense.y
+      },
+    }));
+  });
+});
+
+const jeu = [];
+
+jeuMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1334)
+    jeu.push(new Frontiere({ 
       position: {
         x: j * Frontiere.width + compense.x,
         y: i * Frontiere.height + compense.y
@@ -172,7 +191,7 @@ const touche = {
   }
 };
 
-const bouger = [background, ...frontieres, arrierePlan, ...contact, ...app1, ...app2, ...acceuil];
+const bouger = [background, ...frontieres, arrierePlan, ...contact, ...app1, ...app2, ...acceuil, ...jeu];
 
 function limiteCollision({limite1, limite2}) {
   return (
@@ -195,6 +214,10 @@ const site2={
 };
 
 const retourAcceuil={
+  chargement: false
+};
+
+const petitJeu={
   chargement: false
 };
 
@@ -237,6 +260,9 @@ function animationJoueur() {
   if(site2.chargement) return;
 
   if(retourAcceuil.chargement) return;
+
+  if(petitJeu.chargement) return;
+
 
 //  ----------  Activation de la zone de contact pour CV----------  //
   if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
@@ -431,6 +457,58 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
             duration: 0.4,
             onComplete() {
               // activation animation retour acceuil
+              animationCv()
+              window.open("./appCv/indexCv.html");  
+              gsap.to("#chevauchement", {
+                opacity: 0,
+                duration: 0.4,
+              })
+            }
+          })
+        }
+      })
+      break;
+    }
+  };
+} 
+
+//  ----------  Activation de la zone de contact pour jeu caché ----------  //
+if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
+  for (let i = 0; i < jeu.length; i++) {
+    const jeuCache = jeu[i];
+    const aireChevauchement = 
+      (Math.min(joueur.position.x + joueur.width, jeuCache.position.x + jeuCache.width) 
+      -
+      Math.max(joueur.position.x, jeuCache.position.x))
+      *
+      (Math.min(joueur.position.y + joueur.height, jeuCache.position.y + jeuCache.height)
+      -
+      Math.max(joueur.position.y, jeuCache.position.y))
+    if (
+      limiteCollision({
+        limite1: joueur,
+        limite2: jeuCache
+      }) &&
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.06
+    )
+      {
+      console.log("chargement app1");
+
+      // desactivation boucle animation jeu caché
+      window.cancelAnimationFrame(animationId)
+
+      cv.chargement = true
+      gsap.to("#chevauchement", {
+        opacity: 1,
+        repeat: 3,
+        yoyo: true,
+        duration: 0.4,
+        onComplete() {
+          gsap.to("#chevauchement", {
+            opacity: 1,
+            duration: 0.4,
+            onComplete() {
+              // activation animation jeu caché
               animationCv()
               window.open("./appCv/indexCv.html");  
               gsap.to("#chevauchement", {
