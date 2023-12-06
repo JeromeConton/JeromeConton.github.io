@@ -3,8 +3,6 @@
 const chargementCvImage = new Image();
 chargementCvImage.src = "./app/images/chargementCv.png";
 
-// document.querySelector("#retourJeu").style.display = 'none'
-
 const chargementCv = new BougerJoueur({
   position: {
     x: 0,
@@ -14,13 +12,11 @@ const chargementCv = new BougerJoueur({
 });
 
 let animationIdCv;
-let renderedSprites;
 
 function animationCv() {
   document.querySelector("#retourJeu").style.display = "block";
   animationIdCv = window.requestAnimationFrame(animationCv);
   chargementCv.draw();
-  // window.open("indexCv.html");
   console.log("animation du cv");
 };
 
@@ -36,18 +32,15 @@ document.querySelectorAll("button").forEach(button=> {
       duration: 0.4,
       onComplete() {
         cancelAnimationFrame(animationIdCv);   
-          animationJoueur();
-          document.querySelector("#retourJeu").style.display = 'none'
-          // cv.chargement = false;
+        animationJoueur();
+        document.querySelector("#retourJeu").style.display = 'none'
         gsap.to("#chevauchement", {
           opacity: 0,
           duration: 0.4,
         })
 
-       cv.chargement = false;
+        cv.chargement = false;
       }  
     })
   })
 });
-
-
