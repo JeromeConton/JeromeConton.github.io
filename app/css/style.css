@@ -128,3 +128,8 @@ button:hover {
   display:flex;
   align-content: space-between;
 }
+
+footer {
+  color :aliceblue;
+  text-align: end;
+}
