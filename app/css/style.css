@@ -1,6 +1,85 @@
 body {
+  display: flexbox;
   background-color: black;
 }
+
+.container1 {
+  /* display: flex; */
+  justify-content: center;
+}
+.titre {
+    
+  margin-top: 2rem;
+  color: aliceblue;
+  text-align: center;
+  font-size: 4rem;
+  font-weight:  bolder;
+  animation-duration: 1s;
+  animation-name: intro
+}
+
+@keyframes intro {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.container2 {
+  display: flex;
+
+}
+
+
+.presentation {
+  color: aliceblue;
+  padding: 0 5rem;
+  font-size: 1.7rem;  
+  animation-delay: 20ms;
+  animation: presentation 2s ease-out;
+}
+
+@keyframes presentation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.visites {
+  color: rgb(116, 200, 88);
+  font-size: 1.3rem;
+}
+.touches {
+  color: rgb(116, 200, 88);
+  font-size: 1.2rem;
+  line-height: 0.4rem;
+  
+}
+
+canvas {
+  margin: 1rem auto;
+  animation: carte 1s ease-out;
+}
+
+@keyframes carte {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 
 .bandeau {
   display: inline-block;
@@ -37,7 +116,7 @@ body {
   height: 2em;
   position: absolute;
   bottom: 1em;
-  margin-left: 28em;
+  margin: -5rem 0rem 0rem 30rem;
 }
 
 button:hover {
