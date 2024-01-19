@@ -8,11 +8,10 @@ body {
   justify-content: center;
 }
 .titre {
-    
   margin-top: 2rem;
   color: aliceblue;
   text-align: center;
-  font-size: 4rem;
+  font-size: 7vh;
   font-weight:  bolder;
   animation-duration: 1s;
   animation-name: intro
@@ -32,14 +31,15 @@ body {
 
 .container2 {
   display: flex;
-
 }
 
 
 .presentation {
   color: aliceblue;
-  padding: 0 5rem;
-  font-size: 1.7rem;  
+  text-align: justify;
+  margin-top: -1em;
+  padding: 1rem 2rem;
+  font-size: 2.5vh;  
   animation-delay: 20ms;
   animation: presentation 2s ease-out;
 }
@@ -55,16 +55,17 @@ body {
 
 .visites {
   color: rgb(116, 200, 88);
-  font-size: 1.3rem;
+  font-size: 2vh;
 }
 .touches {
   color: rgb(116, 200, 88);
-  font-size: 1.2rem;
+  font-size: 1.7vh;
   line-height: 0.4rem;
   
 }
 
 canvas {
+  max-width: 120vh;
   margin: 1rem auto;
   animation: carte 1s ease-out;
 }
