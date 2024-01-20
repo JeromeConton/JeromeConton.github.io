@@ -4,7 +4,8 @@ const context = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
-// Boucle des cases des différentes cartes
+
+//  ----------  Boucle des cases des différentes cartes ----------  // 
 
 const collisionsMap = []
 for (let i = 0; i < collisionsJson.length; i += 70) {
@@ -51,6 +52,9 @@ const compense = {
   x:-65,
   y: -710
 };
+
+
+//  ----------  Zones de collision et de chargement ----------  // 
 
 collisionsMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
@@ -162,7 +166,9 @@ jeuMap.forEach((row, i) => {
   });
 });
 
-// Mouvements du joueur
+
+//  ----------  Mouvements du joueur ----------  //
+
 context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -242,6 +248,9 @@ function limiteCollision({limite1, limite2}) {
     limite1.position.y + limite1.height >= limite2.position.y)
 };
 
+
+//  ----------  Chargement des zones ----------  // 
+
 const cv ={
   chargement: false
 };
@@ -310,7 +319,7 @@ function animationJoueur() {
   joueur.mouvement = false;
 
   console.log(animationId);
-  
+
   if(cv.chargement) return;
   if(site1.chargement) return;
   if(site2.chargement) return;
@@ -321,6 +330,7 @@ function animationJoueur() {
 
 
 //  ----------  Activation de la zone de contact pour CV  ----------  //
+
   if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
     for (let i = 0; i < contact.length; i++) {
       const contactCv = contact[i];
@@ -342,7 +352,7 @@ function animationJoueur() {
         {
         console.log("chargement contact");
 
-        // desactivation boucle animation cv
+        // désactivation boucle animation cv
         window.cancelAnimationFrame(animationId)
 
         cv.chargement = true
@@ -356,7 +366,7 @@ function animationJoueur() {
               opacity: 1,
               duration: 0.4,
               onComplete() {
-                // activation anamation cv
+                // activation animation cv
                 animationCv()
                 window.open("https://jeromeconton.github.io/");  
                 gsap.to("#chevauchement", {
@@ -373,6 +383,7 @@ function animationJoueur() {
   }
 
 //  ----------  Activation de la zone de contact pour Application 1 ----------  //
+
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   for (let i = 0; i < app1.length; i++) {
     const app1Site = app1[i];
@@ -394,7 +405,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
       {
       console.log("chargement app1");
 
-      // desactivation boucle animation Application 1
+      // désactivation boucle animation Application 1
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -425,6 +436,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
 } 
 
 //  ----------  Activation de la zone de contact pour Application 2 ----------  //
+
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   for (let i = 0; i < app2.length; i++) {
     const app2Site = app2[i];
@@ -446,7 +458,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
       {
       console.log("chargement app2");
 
-      // desactivation boucle animation Application 2
+      // désactivation boucle animation Application 2
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -477,6 +489,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
 } 
 
 //  ----------  Activation de la zone de contact pour commentaire des jurys ----------  //
+
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   for (let i = 0; i < commentaires.length; i++) {
     const commentairesRetour = commentaires[i];
@@ -498,7 +511,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
       {
       console.log("chargement commentaires jury");
 
-      // desactivation boucle animation commentaire des jurys
+      // désactivation boucle animation commentaire des jurys
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -528,7 +541,8 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   };
 } 
 
-//  ----------  Activation de la zone de contact pour le Diplome ----------  //
+//  ----------  Activation de la zone de contact pour le Diplôme ----------  //
+
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   for (let i = 0; i < diplome.length; i++) {
     const diplomePhoto = diplome[i];
@@ -550,7 +564,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
       {
       console.log("chargement diplome");
 
-      // desactivation boucle animation Diplôme
+      // désactivation boucle animation Diplôme
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -581,6 +595,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
 } 
 
 //  ----------  Activation de la zone de contact pour Linkedin ----------  //
+
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   for (let i = 0; i < linkedin.length; i++) {
     const linkedinSite = linkedin[i];
@@ -602,7 +617,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
       {
       console.log("chargement Linkedin");
 
-      // desactivation boucle animation Linkedin
+      // désactivation boucle animation Linkedin
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -633,6 +648,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
 } 
 
 //  ----------  Activation de la zone de contact pour jeu caché ----------  //
+
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   for (let i = 0; i < jeu.length; i++) {
     const jeuCache = jeu[i];
@@ -654,7 +670,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
       {
       console.log("chargement app1");
 
-      // desactivation boucle animation jeu caché
+      // désactivation boucle animation jeu caché
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -684,7 +700,9 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   };
 } 
 
-  //  ----------  Activation des frontieres  ----------  //
+
+//  ----------  Activation des frontieres  ----------  //
+
   if (touche.z.press && derniereTouche === 'z') {
     joueur.mouvement = true;
     joueur.carteImage = joueur.bougerJoueurs.up;
