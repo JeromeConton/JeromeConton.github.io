@@ -4,6 +4,8 @@ const context = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
+// Boucle des cases des différentes cartes
+
 const collisionsMap = []
 for (let i = 0; i < collisionsJson.length; i += 70) {
   collisionsMap.push(collisionsJson.slice(i, 70 + i));
@@ -24,9 +26,19 @@ for (let i = 0; i < app2Json.length; i += 70) {
   app2Map.push(app2Json.slice(i, 70 + i));
 };
 
-const acceuilMap = []
-for (let i = 0; i < acceuilJson.length; i += 70) {
-  acceuilMap.push(acceuilJson.slice(i, 70 + i));
+const commentairesMap = []
+for (let i = 0; i < commentairesJson.length; i += 70) {
+  commentairesMap.push(commentairesJson.slice(i, 70 + i));
+};
+
+const diplomeMap = []
+for (let i = 0; i < diplomeJson.length; i += 70) {
+  diplomeMap.push(diplomeJson.slice(i, 70 + i));
+};
+
+const linkedinMap = []
+for (let i = 0; i < linkedinJson.length; i += 70) {
+  linkedinMap.push(linkedinJson.slice(i, 70 + i));
 };
 
 const jeuMap = []
@@ -94,12 +106,40 @@ app2Map.forEach((row, i) => {
   });
 });
 
-const acceuil = [];
+const commentaires = [];
 
-acceuilMap.forEach((row, i) => {
+commentairesMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
-    if (symbol === 1334)
-    acceuil.push(new Frontiere({ 
+    if (symbol === 1134)
+    commentaires.push(new Frontiere({ 
+      position: {
+        x: j * Frontiere.width + compense.x,
+        y: i * Frontiere.height + compense.y
+      },
+    }));
+  });
+});
+
+const diplome = [];
+
+diplomeMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1134)
+    diplome.push(new Frontiere({ 
+      position: {
+        x: j * Frontiere.width + compense.x,
+        y: i * Frontiere.height + compense.y
+      },
+    }));
+  });
+});
+
+const linkedin = [];
+
+linkedinMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1134)
+    linkedin.push(new Frontiere({ 
       position: {
         x: j * Frontiere.width + compense.x,
         y: i * Frontiere.height + compense.y
@@ -122,6 +162,7 @@ jeuMap.forEach((row, i) => {
   });
 });
 
+// Mouvements du joueur
 context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -191,7 +232,7 @@ const touche = {
   }
 };
 
-const bouger = [background, ...frontieres, arrierePlan, ...contact, ...app1, ...app2, ...acceuil, ...jeu];
+const bouger = [background, ...frontieres, arrierePlan, ...contact, ...app1, ...app2, ...commentaires, ...diplome, ...linkedin, ...jeu];
 
 function limiteCollision({limite1, limite2}) {
   return (
@@ -213,7 +254,15 @@ const site2={
   chargement: false
 };
 
-const retourAcceuil={
+const retourcommentaires={
+  chargement: false
+};
+
+const photoDiplome={
+  chargement: false
+};
+
+const siteLinkedin={
   chargement: false
 };
 
@@ -242,8 +291,16 @@ function animationJoueur() {
     app2Site.draw();
   })
 
-  acceuil.forEach(acceuilRetour => {
-    acceuilRetour.draw();
+  commentaires.forEach(commentairesRetour => {
+    commentairesRetour.draw();
+  })
+
+  diplome.forEach(diplomePhoto => {
+    diplomePhoto.draw();
+  })
+
+  linkedin.forEach(linkedinSite => {
+    linkedinSite.draw();
   })
 
   joueur.draw();
@@ -253,18 +310,17 @@ function animationJoueur() {
   joueur.mouvement = false;
 
   console.log(animationId);
+  
   if(cv.chargement) return;
-
   if(site1.chargement) return;
-
   if(site2.chargement) return;
-
-  if(retourAcceuil.chargement) return;
-
+  if(retourcommentaires.chargement) return;
+  if(photoDiplome.chargement) return;
+  if(siteLinkedin.chargement) return;
   if(petitJeu.chargement) return;
 
 
-//  ----------  Activation de la zone de contact pour CV----------  //
+//  ----------  Activation de la zone de contact pour CV  ----------  //
   if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
     for (let i = 0; i < contact.length; i++) {
       const contactCv = contact[i];
@@ -420,29 +476,29 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
   };
 } 
 
-//  ----------  Activation de la zone de contact pour retour acceuil ----------  //
+//  ----------  Activation de la zone de contact pour commentaire des jurys ----------  //
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
-  for (let i = 0; i < acceuil.length; i++) {
-    const acceuilRetour = acceuil[i];
+  for (let i = 0; i < commentaires.length; i++) {
+    const commentairesRetour = commentaires[i];
     const aireChevauchement = 
-      (Math.min(joueur.position.x + joueur.width, acceuilRetour.position.x + acceuilRetour.width) 
+      (Math.min(joueur.position.x + joueur.width, commentairesRetour.position.x + commentairesRetour.width) 
       -
-      Math.max(joueur.position.x, acceuilRetour.position.x))
+      Math.max(joueur.position.x, commentairesRetour.position.x))
       *
-      (Math.min(joueur.position.y + joueur.height, acceuilRetour.position.y + acceuilRetour.height)
+      (Math.min(joueur.position.y + joueur.height, commentairesRetour.position.y + commentairesRetour.height)
       -
-      Math.max(joueur.position.y, acceuilRetour.position.y))
+      Math.max(joueur.position.y, commentairesRetour.position.y))
     if (
       limiteCollision({
         limite1: joueur,
-        limite2: acceuilRetour
+        limite2: commentairesRetour
       }) &&
       aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
     )
       {
-      console.log("chargement app1");
+      console.log("chargement commentaires jury");
 
-      // desactivation boucle animation retour acceuil
+      // desactivation boucle animation commentaire des jurys
       window.cancelAnimationFrame(animationId)
 
       cv.chargement = true
@@ -456,9 +512,113 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
             opacity: 1,
             duration: 0.4,
             onComplete() {
-              // activation animation retour acceuil
-              animationCv()
-              window.open("./appCv/indexCv.html");  
+              // activation animation commentaire des jurys
+              animationCommentaires()
+              window.open("./app/images/commentaireJury.webp");  
+              gsap.to("#chevauchement", {
+                opacity: 0,
+                duration: 0.4,
+              })
+            }
+          })
+        }
+      })
+      break;
+    }
+  };
+} 
+
+//  ----------  Activation de la zone de contact pour le Diplome ----------  //
+if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
+  for (let i = 0; i < diplome.length; i++) {
+    const diplomePhoto = diplome[i];
+    const aireChevauchement = 
+      (Math.min(joueur.position.x + joueur.width, diplomePhoto.position.x + diplomePhoto.width) 
+      -
+      Math.max(joueur.position.x, diplomePhoto.position.x))
+      *
+      (Math.min(joueur.position.y + joueur.height, diplomePhoto.position.y + diplomePhoto.height)
+      -
+      Math.max(joueur.position.y, diplomePhoto.position.y))
+    if (
+      limiteCollision({
+        limite1: joueur,
+        limite2: diplomePhoto
+      }) &&
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+    )
+      {
+      console.log("chargement diplome");
+
+      // desactivation boucle animation Diplôme
+      window.cancelAnimationFrame(animationId)
+
+      cv.chargement = true
+      gsap.to("#chevauchement", {
+        opacity: 1,
+        repeat: 3,
+        yoyo: true,
+        duration: 0.4,
+        onComplete() {
+          gsap.to("#chevauchement", {
+            opacity: 1,
+            duration: 0.4,
+            onComplete() {
+              // activation animation diplôme
+              animationDiplome()
+              window.open("./app/images/commentaireJury.webp");  
+              gsap.to("#chevauchement", {
+                opacity: 0,
+                duration: 0.4,
+              })
+            }
+          })
+        }
+      })
+      break;
+    }
+  };
+} 
+
+//  ----------  Activation de la zone de contact pour Linkedin ----------  //
+if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
+  for (let i = 0; i < linkedin.length; i++) {
+    const linkedinSite = linkedin[i];
+    const aireChevauchement = 
+      (Math.min(joueur.position.x + joueur.width, linkedinSite.position.x + linkedinSite.width) 
+      -
+      Math.max(joueur.position.x, linkedinSite.position.x))
+      *
+      (Math.min(joueur.position.y + joueur.height, linkedinSite.position.y + linkedinSite.height)
+      -
+      Math.max(joueur.position.y, linkedinSite.position.y))
+    if (
+      limiteCollision({
+        limite1: joueur,
+        limite2: linkedinSite
+      }) &&
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+    )
+      {
+      console.log("chargement Linkedin");
+
+      // desactivation boucle animation Linkedin
+      window.cancelAnimationFrame(animationId)
+
+      cv.chargement = true
+      gsap.to("#chevauchement", {
+        opacity: 1,
+        repeat: 3,
+        yoyo: true,
+        duration: 0.4,
+        onComplete() {
+          gsap.to("#chevauchement", {
+            opacity: 1,
+            duration: 0.4,
+            onComplete() {
+              // activation animation Linkedin
+              animationLinkedin()
+              window.open("https://www.linkedin.com/in/jerome-conton/");  
               gsap.to("#chevauchement", {
                 opacity: 0,
                 duration: 0.4,
