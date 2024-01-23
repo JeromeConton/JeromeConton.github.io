@@ -118,8 +118,8 @@ span {
 }
 
 canvas {
-  max-width: 110vh;
-  /* background-color: rgb(103, 230, 209); */
+  width: 55vw;
+  background-color: rgb(103, 230, 209, 0.1);
   margin: 1rem auto;
   animation: carte 1s ease-out;
 }
