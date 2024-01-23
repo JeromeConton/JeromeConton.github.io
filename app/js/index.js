@@ -4,6 +4,14 @@ const context = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
+// Ajoutez ces lignes au début de votre fichier
+document.addEventListener('keydown', (event) => {
+  // Vérifiez la touche appuyée
+  if (event.key === 'z' || event.key === 's' || event.key === 'q' || event.key === 'd') {
+    // Appeler la fonction pour activer le chargement
+    activerChargement();
+  }
+});
 
 //  ----------  Boucle des cases des différentes cartes ----------  // 
 
@@ -347,7 +355,7 @@ function animationJoueur() {
           limite1: joueur,
           limite2: contactCv
         }) &&
-        aireChevauchement > (joueur.width * joueur.height) /2 && Math.random() < 0.02
+        aireChevauchement > (joueur.width * joueur.height) /2 && Math.random() < 0.03
       )
         {
         console.log("chargement contact");
@@ -373,15 +381,18 @@ function animationJoueur() {
                   opacity: 0,
                   duration: 0.4,
                 })
+                
               }
+              
             })
           }
         })
+        if(cv.chargement) {cv.chargement = false}
         break;
       }
     };
   }
-
+  if(cv.chargement) {cv.chargement = false}
 //  ----------  Activation de la zone de contact pour Application 1 ----------  //
 
 if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
@@ -400,7 +411,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: app1Site
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.04
     )
       {
       console.log("chargement app1");
@@ -453,7 +464,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: app2Site
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.04
     )
       {
       console.log("chargement app2");
@@ -506,7 +517,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: commentairesRetour
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.04
     )
       {
       console.log("chargement commentaires jury");
@@ -559,7 +570,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: diplomePhoto
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.04
     )
       {
       console.log("chargement diplome");
@@ -612,7 +623,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: linkedinSite
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.04
     )
       {
       console.log("chargement Linkedin");
@@ -665,7 +676,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
         limite1: joueur,
         limite2: jeuCache
       }) &&
-      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.05
+      aireChevauchement > (joueur.width * joueur.height) /3 && Math.random() < 0.04
     )
       {
       console.log("chargement app1");
