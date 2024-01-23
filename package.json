@@ -8,6 +8,7 @@
   "license": "ISC",
   "webpack-cli": "^5.1.4",
   "scripts": {
+    "start": "index.html",
     "build": "npx webpack --mode production",
     "deploy": "gh-pages -d build"
   },
