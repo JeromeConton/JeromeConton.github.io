@@ -1,0 +1,25 @@
+{  
+
+  "homepage": "https://jeromeconton.github.io/jeromeconton.github.io",
+  "name": "portfolio",
+  "description": "portfolio-game de Jérôme Conton",
+  "version": "1.0.0",
+  "main": "index.html",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d build"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeromeconton/jeromeconton.github.io"
+  },
+
+  "author": "Jérome Conton",
+  "license": "ISC",
+
+  "dependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

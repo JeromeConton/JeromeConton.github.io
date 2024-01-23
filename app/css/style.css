@@ -37,50 +37,50 @@ span {
 }
 
 /* Animation pour chaque lettre */
-@keyframes fadeIn {
+@keyframes titre {
   to {
     opacity: 1;
   }
 }
 
 /* Appliquez l'animation aux lettres avec des délais différents */
-.titre span:nth-child(1) {animation: fadeIn 0.5s ease-out 50ms forwards;}
-.titre span:nth-child(2) {animation: fadeIn 0.5s ease-out 100ms forwards;}
-.titre span:nth-child(3) {animation: fadeIn 0.5s ease-out 150ms forwards;}
-.titre span:nth-child(4) {animation: fadeIn 0.5s ease-out 200ms forwards;}
-.titre span:nth-child(5) {animation: fadeIn 0.5s ease-out 250ms forwards;}
-.titre span:nth-child(6) {animation: fadeIn 0.5s ease-out 300ms forwards;}
-.titre span:nth-child(7) {animation: fadeIn 0.5s ease-out 350ms forwards;}
-.titre span:nth-child(8) {animation: fadeIn 0.5s ease-out 400ms forwards;}
-.titre span:nth-child(9) {animation: fadeIn 0.5s ease-out 450ms forwards;}
-.titre span:nth-child(10) {animation: fadeIn 0.5s ease-out 500ms forwards;}
-.titre span:nth-child(11) {animation: fadeIn 0.5s ease-out 550ms forwards;}
-.titre span:nth-child(12) {animation: fadeIn 0.5s ease-out 600ms forwards;}
-.titre span:nth-child(13) {animation: fadeIn 0.5s ease-out 650ms forwards;}
-.titre span:nth-child(14) {animation: fadeIn 0.5s ease-out 700ms forwards;}
-.titre span:nth-child(15) {animation: fadeIn 0.5s ease-out 750ms forwards;}
-.titre span:nth-child(16) {animation: fadeIn 0.5s ease-out 800ms forwards;}
-.titre span:nth-child(17) {animation: fadeIn 0.5s ease-out 850ms forwards;}
-.titre span:nth-child(18) {animation: fadeIn 0.5s ease-out 900ms forwards;}
-.titre span:nth-child(19) {animation: fadeIn 0.5s ease-out 950ms forwards;}
-.titre span:nth-child(20) {animation: fadeIn 0.5s ease-out 1000ms forwards;}
-.titre span:nth-child(21) {animation: fadeIn 0.5s ease-out 1050ms forwards;}
-.titre span:nth-child(22) {animation: fadeIn 0.5s ease-out 1100ms forwards;}
-.titre span:nth-child(23) {animation: fadeIn 0.5s ease-out 1150ms forwards;}
-.titre span:nth-child(24) {animation: fadeIn 0.5s ease-out 1200ms forwards;}
-.titre span:nth-child(25) {animation: fadeIn 0.5s ease-out 1250ms forwards;}
-.titre span:nth-child(26) {animation: fadeIn 0.5s ease-out 1300ms forwards;}
-.titre span:nth-child(27) {animation: fadeIn 0.5s ease-out 1350ms forwards;}
-.titre span:nth-child(28) {animation: fadeIn 0.5s ease-out 1400ms forwards;}
-.titre span:nth-child(29) {animation: fadeIn 0.5s ease-out 1450ms forwards;}
-.titre span:nth-child(30) {animation: fadeIn 0.5s ease-out 1500ms forwards;}
-.titre span:nth-child(31) {animation: fadeIn 0.5s ease-out 1550ms forwards;}
-.titre span:nth-child(32) {animation: fadeIn 0.5s ease-out 1600ms forwards;}
-.titre span:nth-child(33) {animation: fadeIn 0.5s ease-out 1650ms forwards;}
-.titre span:nth-child(34) {animation: fadeIn 0.5s ease-out 1700ms forwards;}
-.titre span:nth-child(35) {animation: fadeIn 0.5s ease-out 1750ms forwards;}
-.titre span:nth-child(36) {animation: fadeIn 0.5s ease-out 1800ms forwards;}
-.titre span:nth-child(37) {animation: fadeIn 0.5s ease-out 1850ms forwards;}
+.titre span:nth-child(1) {animation: titre 0.5s ease-out 50ms forwards;}
+.titre span:nth-child(2) {animation: titre 0.5s ease-out 100ms forwards;}
+.titre span:nth-child(3) {animation: titre 0.5s ease-out 150ms forwards;}
+.titre span:nth-child(4) {animation: titre 0.5s ease-out 200ms forwards;}
+.titre span:nth-child(5) {animation: titre 0.5s ease-out 250ms forwards;}
+.titre span:nth-child(6) {animation: titre 0.5s ease-out 300ms forwards;}
+.titre span:nth-child(7) {animation: titre 0.5s ease-out 350ms forwards;}
+.titre span:nth-child(8) {animation: titre 0.5s ease-out 400ms forwards;}
+.titre span:nth-child(9) {animation: titre 0.5s ease-out 450ms forwards;}
+.titre span:nth-child(10) {animation: titre 0.5s ease-out 500ms forwards;}
+.titre span:nth-child(11) {animation: titre 0.5s ease-out 550ms forwards;}
+.titre span:nth-child(12) {animation: titre 0.5s ease-out 600ms forwards;}
+.titre span:nth-child(13) {animation: titre 0.5s ease-out 650ms forwards;}
+.titre span:nth-child(14) {animation: titre 0.5s ease-out 700ms forwards;}
+.titre span:nth-child(15) {animation: titre 0.5s ease-out 750ms forwards;}
+.titre span:nth-child(16) {animation: titre 0.5s ease-out 800ms forwards;}
+.titre span:nth-child(17) {animation: titre 0.5s ease-out 850ms forwards;}
+.titre span:nth-child(18) {animation: titre 0.5s ease-out 900ms forwards;}
+.titre span:nth-child(19) {animation: titre 0.5s ease-out 950ms forwards;}
+.titre span:nth-child(20) {animation: titre 0.5s ease-out 1000ms forwards;}
+.titre span:nth-child(21) {animation: titre 0.5s ease-out 1050ms forwards;}
+.titre span:nth-child(22) {animation: titre 0.5s ease-out 1100ms forwards;}
+.titre span:nth-child(23) {animation: titre 0.5s ease-out 1150ms forwards;}
+.titre span:nth-child(24) {animation: titre 0.5s ease-out 1200ms forwards;}
+.titre span:nth-child(25) {animation: titre 0.5s ease-out 1250ms forwards;}
+.titre span:nth-child(26) {animation: titre 0.5s ease-out 1300ms forwards;}
+.titre span:nth-child(27) {animation: titre 0.5s ease-out 1350ms forwards;}
+.titre span:nth-child(28) {animation: titre 0.5s ease-out 1400ms forwards;}
+.titre span:nth-child(29) {animation: titre 0.5s ease-out 1450ms forwards;}
+.titre span:nth-child(30) {animation: titre 0.5s ease-out 1500ms forwards;}
+.titre span:nth-child(31) {animation: titre 0.5s ease-out 1550ms forwards;}
+.titre span:nth-child(32) {animation: titre 0.5s ease-out 1600ms forwards;}
+.titre span:nth-child(33) {animation: titre 0.5s ease-out 1650ms forwards;}
+.titre span:nth-child(34) {animation: titre 0.5s ease-out 1700ms forwards;}
+.titre span:nth-child(35) {animation: titre 0.5s ease-out 1750ms forwards;}
+.titre span:nth-child(36) {animation: titre 0.5s ease-out 1800ms forwards;}
+.titre span:nth-child(37) {animation: titre 0.5s ease-out 1850ms forwards;}
 
 .container2 {
   display: flex;
@@ -118,7 +118,7 @@ span {
 }
 
 canvas {
-  /* max-width: 120vh; */
+  max-width: 110vh;
   /* background-color: rgb(103, 230, 209); */
   margin: 1rem auto;
   animation: carte 1s ease-out;

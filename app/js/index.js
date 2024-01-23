@@ -580,7 +580,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
             onComplete() {
               // activation animation diplôme
               animationDiplome()
-              window.open("./app/images/commentaireJury.webp");  
+              window.open("./app/images/diplomeDev.webp");
               gsap.to("#chevauchement", {
                 opacity: 0,
                 duration: 0.4,
