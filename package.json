@@ -1,25 +1,28 @@
-{  
-
+{
   "homepage": "https://jeromeconton.github.io/jeromeconton.github.io",
   "name": "portfolio",
   "description": "portfolio-game de Jérôme Conton",
   "version": "1.0.0",
   "main": "index.html",
-  "devDependencies": {},
+  "author": "Jérome Conton",
+  "license": "ISC",
+  "webpack-cli": "^5.1.4",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack --mode production",
     "deploy": "gh-pages -d build"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/jeromeconton/jeromeconton.github.io"
   },
-
-  "author": "Jérome Conton",
-  "license": "ISC",
-
   "dependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "html-loader": "^5.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

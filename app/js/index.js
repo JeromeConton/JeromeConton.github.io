@@ -173,22 +173,22 @@ context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 const carteImage = new Image();
-carteImage.src = "./app/images/PortfolioGameMap.png";
+carteImage.src = "./app/public/images/PortfolioGameMap.png";
 
 const arrierePlanImage = new Image();
-arrierePlanImage.src = "./app/images/PortfolioGameMapArrierePlan.png"
+arrierePlanImage.src = "./app/public/images/PortfolioGameMapArrierePlan.png"
 
 const joueurDownImage = new Image();
-joueurDownImage.src ="./app/images/JoueurDown.png";
+joueurDownImage.src ="./app/public/images/JoueurDown.png";
 
 const joueurUpImage = new Image();
-joueurUpImage.src ="./app/images/JoueurUp.png";
+joueurUpImage.src ="./app/public/images/JoueurUp.png";
 
 const joueurLeftImage = new Image();
-joueurLeftImage.src ="./app/images/JoueurLeft.png";
+joueurLeftImage.src ="./app/public/images/JoueurLeft.png";
 
 const joueurRightImage = new Image();
-joueurRightImage.src ="./app/images/JoueurRight.png";
+joueurRightImage.src ="./app/public/images/JoueurRight.png";
 
 const joueur = new BougerJoueur({
   position: {
@@ -368,7 +368,7 @@ function animationJoueur() {
               onComplete() {
                 // activation animation cv
                 animationCv()
-                window.open("https://jeromeconton.github.io/");  
+                window.open("https://contonjerome.fr/");  
                 gsap.to("#chevauchement", {
                   opacity: 0,
                   duration: 0.4,
@@ -527,7 +527,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
             onComplete() {
               // activation animation commentaire des jurys
               animationCommentaires()
-              window.open("./app/images/commentaireJury.webp");  
+              window.open("./app/public/images/commentaireJury.webp");  
               gsap.to("#chevauchement", {
                 opacity: 0,
                 duration: 0.4,
@@ -580,7 +580,7 @@ if (touche.z.press || touche.s.press || touche.q.press || touche.d.press) {
             onComplete() {
               // activation animation diplôme
               animationDiplome()
-              window.open("./app/images/diplomeDev.webp");
+              window.open("./app/public/images/diplomeDev.webp");
               gsap.to("#chevauchement", {
                 opacity: 0,
                 duration: 0.4,

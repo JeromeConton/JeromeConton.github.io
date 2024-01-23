@@ -1,0 +1,226 @@
+body {
+  display: flexbox;
+  background-color: black;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+
+}
+.titre {
+  margin-top: 1rem;
+  color: aliceblue;
+  text-align: center;
+  font-size: 7vh;
+  font-weight:  bolder;  
+  /* animation-duration: 1s;
+  animation-name: intro */
+}
+
+/* @keyframes intro {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+} */
+
+span {
+  opacity: 0;
+  display: inline-block;
+  transform-origin: 0 50%; 
+}
+
+/* Animation pour chaque lettre */
+@keyframes titre {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Appliquez l'animation aux lettres avec des délais différents */
+.titre span:nth-child(1) {animation: titre 0.5s ease-out 50ms forwards;}
+.titre span:nth-child(2) {animation: titre 0.5s ease-out 100ms forwards;}
+.titre span:nth-child(3) {animation: titre 0.5s ease-out 150ms forwards;}
+.titre span:nth-child(4) {animation: titre 0.5s ease-out 200ms forwards;}
+.titre span:nth-child(5) {animation: titre 0.5s ease-out 250ms forwards;}
+.titre span:nth-child(6) {animation: titre 0.5s ease-out 300ms forwards;}
+.titre span:nth-child(7) {animation: titre 0.5s ease-out 350ms forwards;}
+.titre span:nth-child(8) {animation: titre 0.5s ease-out 400ms forwards;}
+.titre span:nth-child(9) {animation: titre 0.5s ease-out 450ms forwards;}
+.titre span:nth-child(10) {animation: titre 0.5s ease-out 500ms forwards;}
+.titre span:nth-child(11) {animation: titre 0.5s ease-out 550ms forwards;}
+.titre span:nth-child(12) {animation: titre 0.5s ease-out 600ms forwards;}
+.titre span:nth-child(13) {animation: titre 0.5s ease-out 650ms forwards;}
+.titre span:nth-child(14) {animation: titre 0.5s ease-out 700ms forwards;}
+.titre span:nth-child(15) {animation: titre 0.5s ease-out 750ms forwards;}
+.titre span:nth-child(16) {animation: titre 0.5s ease-out 800ms forwards;}
+.titre span:nth-child(17) {animation: titre 0.5s ease-out 850ms forwards;}
+.titre span:nth-child(18) {animation: titre 0.5s ease-out 900ms forwards;}
+.titre span:nth-child(19) {animation: titre 0.5s ease-out 950ms forwards;}
+.titre span:nth-child(20) {animation: titre 0.5s ease-out 1000ms forwards;}
+.titre span:nth-child(21) {animation: titre 0.5s ease-out 1050ms forwards;}
+.titre span:nth-child(22) {animation: titre 0.5s ease-out 1100ms forwards;}
+.titre span:nth-child(23) {animation: titre 0.5s ease-out 1150ms forwards;}
+.titre span:nth-child(24) {animation: titre 0.5s ease-out 1200ms forwards;}
+.titre span:nth-child(25) {animation: titre 0.5s ease-out 1250ms forwards;}
+.titre span:nth-child(26) {animation: titre 0.5s ease-out 1300ms forwards;}
+.titre span:nth-child(27) {animation: titre 0.5s ease-out 1350ms forwards;}
+.titre span:nth-child(28) {animation: titre 0.5s ease-out 1400ms forwards;}
+.titre span:nth-child(29) {animation: titre 0.5s ease-out 1450ms forwards;}
+.titre span:nth-child(30) {animation: titre 0.5s ease-out 1500ms forwards;}
+.titre span:nth-child(31) {animation: titre 0.5s ease-out 1550ms forwards;}
+.titre span:nth-child(32) {animation: titre 0.5s ease-out 1600ms forwards;}
+.titre span:nth-child(33) {animation: titre 0.5s ease-out 1650ms forwards;}
+.titre span:nth-child(34) {animation: titre 0.5s ease-out 1700ms forwards;}
+.titre span:nth-child(35) {animation: titre 0.5s ease-out 1750ms forwards;}
+.titre span:nth-child(36) {animation: titre 0.5s ease-out 1800ms forwards;}
+.titre span:nth-child(37) {animation: titre 0.5s ease-out 1850ms forwards;}
+
+.container2 {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.presentation {
+  color: aliceblue;
+  text-align: justify;
+  margin-top: -1.5rem;
+  padding: 1rem 2rem;
+  font-size: 2.5vh;  
+  animation-delay: 20ms;width: 50%;
+  animation: presentation 2s ease-out;
+}
+
+@keyframes presentation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.visites {
+  color: rgb(116, 200, 88);
+  font-size: 2vh;
+}
+.touches {
+  color: rgb(116, 200, 88);
+  font-size: 1.7vh;
+  line-height: 0.4rem;
+  
+}
+
+canvas {
+  max-width: 110vh;
+  /* background-color: rgb(103, 230, 209); */
+  margin: 1rem auto;
+  animation: carte 1s ease-out;
+}
+
+@keyframes carte {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.bandeau {
+  display: inline-block;
+  position: relative;
+}
+
+#chevauchement {
+  background-color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.cv {
+  background-color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#retourJeu {
+  /* background-color: rgb(116, 200, 88); */
+  width: 8em;
+  height: 2em;
+  position: absolute;
+  bottom: 1em;
+  margin: -5rem 0rem 0rem 30rem;
+}
+
+button:hover {
+  background-color: rgb(116, 200, 88);
+}
+
+#bouton {
+  padding-left: 1.2em;
+  display:flex;
+  align-content: space-between;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;  
+  position: relative;
+  bottom: 0;
+  opacity: 0;
+  animation: footer 4s ease-in 1s forwards;
+
+}
+
+@keyframes footer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+a {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(116, 200, 88);
+}
+
+.raccourci {
+  color :aliceblue;
+  text-align: center;
+  line-height: 1vh;
+  margin-left: 2rem;
+}
+
+.signature {
+  color :aliceblue;
+  text-align: end;
+  
+}

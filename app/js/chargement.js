@@ -1,7 +1,7 @@
 //  ----------  Mise en place du chargement du CV  ----------  //
 
 const chargementCvImage = new Image();
-chargementCvImage.src = "./app/images/chargementCv.webp";
+chargementCvImage.src = "./app/public/images/chargementCv.webp";
 
 const chargementCv = new BougerJoueur({
   position: {
@@ -23,7 +23,7 @@ function animationCv() {
 //  ----------  Mise en place du chargement des Sites Internet  ----------  //
 
 const chargementSiteImage = new Image();
-chargementSiteImage.src = "./app/images/chargementSiteInternet.webp";
+chargementSiteImage.src = "./app/public/images/chargementSiteInternet.webp";
 
 const chargementSite = new BougerJoueur({
   position: {
@@ -45,7 +45,7 @@ function animationSite() {
 //  ----------  Mise en place du chargement des Commentaires du Jyry  ----------  //
 
 const chargementCommentairesImage = new Image();
-chargementCommentairesImage.src = "./app/images/commentaireExam.webp";
+chargementCommentairesImage.src = "./app/public/images/commentaireExam.webp";
 
 const chargementCommentaires = new BougerJoueur({
   position: {
@@ -67,7 +67,7 @@ function animationCommentaires() {
 //  ----------  Mise en place du chargement du Diplôme  ----------  //
 
 const chargementDiplomeImage = new Image();
-chargementDiplomeImage.src = "./app/images/chargementDiplome.webp";
+chargementDiplomeImage.src = "./app/public/images/chargementDiplome.webp";
 
 const chargementDiplome = new BougerJoueur({
   position: {
@@ -89,7 +89,7 @@ function animationDiplome() {
 //  ----------  Mise en place du chargement Linkedin  ----------  //
 
 const chargementLinkedinImage = new Image();
-chargementLinkedinImage.src = "./app/images/pageBleu.png";
+chargementLinkedinImage.src = "./app/public/images/pageBleu.png";
 
 const chargementLinkedin = new BougerJoueur({
   position: {
